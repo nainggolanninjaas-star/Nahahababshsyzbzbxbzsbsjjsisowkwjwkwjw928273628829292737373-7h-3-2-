@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>👻 HOROR FORUM - Komunitas Cerita Horor Indonesia</title>
+    
+    <!-- Google Fonts Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 (Ikon Premium) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Identity Services untuk Login -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <style>
+        /* ===== RESET & VARIABLES PREMIUM ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8b0000;
+            --primary-dark: #5a0000;
+            --primary-light: #b22222;
+            --secondary: #1a1a1a;
+            --dark: #0a0a0a;
+            --dark-100: #1e1e1e;
+            --dark-200: #2d2d2d;
+            --dark-300: #3d3d3d;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --success: #2e7d32;
+            --warning: #ff6d00;
+            --danger: #c62828;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-hover: linear-gradient(135deg, var(--primary-dark), #2d0a0a);
+            --shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --border: 1px solid #333;
+            --border-light: 1px solid #444;
+            --border-red: 1px solid var(--primary);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 20px;
+        }
+        
+        body {
+            font-family: 'Inter', 'Special Elite', cursive, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Efek Blood Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(139, 0, 0, 0.02) 0px,
+                rgba(139, 0, 0, 0.02) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        /* ===== HEADER PREMIUM ===== */
+        .header {
+            background: linear-gradient(135deg, #0a0a0a, #1a0000);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.2) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+            z-index: 0;
+        }
+        
+        .header::after {
+            content: '👻 👻 👻';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            font-size: 60px;
+            color: rgba(139, 0, 0, 0.2);
+            white-space: nowrap;
+            animation: floatText 30s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes floatText {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+        
+        .header h1 {
+            font-family: 'Creepster', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.8), 2px 2px 0 #000, 4px 4px 0 #000;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            animation: flicker 3s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 20px rgba(139, 0, 0, 0.8), 2px 2px 0 #000, 4px 4px 0 #000; }
+            50% { opacity: 0.95; text-shadow: 0 0 30px var(--primary), 2px 2px 0 #000, 6px 6px 0 #000; }
+        }
+        
+        .header p {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* ===== NAVIGASI PREMIUM ===== */
+        .nav {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            min-height: 80px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #userInfo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            border: var(--border-light);
+        }
+        
+        #userInfo img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+        }
+        
+        #userInfo span {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .btn-logout {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .btn-logout:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px 50px;
+        }
+        
+        /* ===== FILTER SECTION ===== */
+        .filters {
+            background: var(--dark-100);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            margin-bottom: 40px;
+            border: var(--border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--dark-200);
+            color: var(--text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            border: var(--border-light);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background: var(--dark-200);
+            border: var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* ===== POST FORM PREMIUM ===== */
+        .post-form {
+            background: linear-gradient(135deg, var(--dark-100), var(--dark-200));
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-bottom: 40px;
+            border: var(--border-red);
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            display: none;
+        }
+        
+        .post-form.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .post-form h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Creepster', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--dark-300);
+            border: var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.2);
+            background: var(--dark-200);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* ===== UPLOAD AREA PREMIUM ===== */
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(139, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-area:hover {
+            background: rgba(139, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .upload-area i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .upload-area p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        
+        .upload-area small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .preview-item {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 2px solid var(--primary);
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .preview-item .remove-btn:hover {
+            transform: scale(1.1);
+            background: #b71c1c;
+        }
+        
+        /* ===== BUTTON PREMIUM ===== */
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-light);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        .btn-google {
+            background: white;
+            color: #333;
+            border: 2px solid #ddd;
+            padding: 14px 35px;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .btn-google:hover {
+            background: #f8f8f8;
+            border-color: #aaa;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-google img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* ===== POSTS GRID PREMIUM ===== */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .post-card {
+            background: var(--dark-100);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        
+        .post-cover {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .post-cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, var(--dark-100), transparent);
+        }
+        
+        .post-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .post-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+            color: var(--text);
+        }
+        
+        .author-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .post-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+        
+        .post-excerpt {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: var(--border);
+        }
+        
+        .post-stats {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .stat i {
+            color: var(--primary);
+        }
+        
+        .stat.wow i {
+            color: #ffd700;
+        }
+        
+        .stat.no i {
+            color: #808080;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* ===== MODAL PREMIUM ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 30px;
+        }
+        
+        .modal-content {
+            max-width: 900px;
+            margin: 50px auto;
+            background: var(--dark-200);
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--primary);
+            position: relative;
+            animation: modalSlideUp 0.5s ease;
+            overflow: hidden;
+        }
+        
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 30px;
+            border-bottom: var(--border-red);
+            position: relative;
+            background: linear-gradient(135deg, var(--dark-200), var(--dark-300));
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 40px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            line-height: 1;
+        }
+        
+        .modal-close:hover {
+            color: white;
+            transform: scale(1.2) rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-right: 60px;
+            font-family: 'Creepster', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .modal-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .modal-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+        }
+        
+        .modal-author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+        
+        .modal-author-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .modal-body {
+            padding: 30px;
+            border-bottom: var(--border);
+        }
+        
+        .modal-body p {
+            line-height: 1.8;
+            white-space: pre-line;
+            font-size: 1.05rem;
+        }
+        
+        .modal-images {
+            padding: 0 30px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .modal-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-images img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+        
+        .modal-footer {
+            padding: 30px;
+            background: var(--dark-300);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .reactions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .reaction-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--text);
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reaction-btn.wow {
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+        
+        .reaction-btn.wow:hover {
+            background: #ffd700;
+            color: #000;
+        }
+        
+        .reaction-btn.no {
+            border-color: #808080;
+            color: #808080;
+        }
+        
+        .reaction-btn.no:hover {
+            background: #808080;
+            color: white;
+        }
+        
+        .reaction-btn.report {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+        
+        .reaction-btn.report:hover {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .comments-section {
+            margin-top: 30px;
+            padding: 0 30px 30px;
+        }
+        
+        .comments-section h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .comment-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .comment-form input {
+            flex: 1;
+            padding: 12px 18px;
+            background: var(--dark-300);
+            border: var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        .comment-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .comment-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .comment-form button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .comment {
+            background: var(--dark-300);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            border: var(--border);
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .comment-author {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .comment-time {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .comment-text {
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* ===== PAGINATION ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .page-btn {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-200);
+            border: var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .page-btn:hover,
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== FOOTER PREMIUM ===== */
+        .footer {
+            background: linear-gradient(135deg, #0a0a0a, #1a0000);
+            padding: 60px 30px;
+            margin-top: 80px;
+            border-top: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(139, 0, 0, 0.2), transparent 70%);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer h3 {
+            font-family: 'Creepster', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        .footer p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .footer .warning {
+            background: rgba(139, 0, 0, 0.2);
+            color: var(--primary);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 30px 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(139, 0, 0, 0.5); }
+            50% { opacity: 0.7; box-shadow: 0 0 40px rgba(139, 0, 0, 0.8); }
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* ===== LOADING ===== */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ===== ALERTS ===== */
+        .alert {
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .alert.error {
+            background: rgba(198, 40, 40, 0.2);
+            border: 2px solid var(--danger);
+            color: #ff8a80;
+        }
+        
+        .alert.success {
+            background: rgba(46, 125, 50, 0.2);
+            border: 2px solid var(--success);
+            color: #a5d6a7;
+        }
+        
+        .alert.warning {
+            background: rgba(255, 109, 0, 0.2);
+            border: 2px solid var(--warning);
+            color: #ffb74d;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                justify-content: center;
+            }
+            
+            .filter-group {
+                justify-content: center;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 20px;
+            }
+            
+            .modal-header {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .reactions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .post-form {
+                padding: 20px;
+            }
+        }
+        
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 6px;
+            border: 3px solid var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+        
+        /* ===== ANIMASI TAMBAHAN ===== */
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER PREMIUM -->
+    <header class="header">
+        <h1>👻 HOROR FORUM</h1>
+        <p>Tempat paling angker untuk berbagi cerita horor Nusantara</p>
+    </header>
+    
+    <!-- NAVIGASI PREMIUM -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Beranda</a>
+                <a href="#" data-page="stories"><i class="fas fa-book"></i> Cerita</a>
+                <a href="#" data-page="categories"><i class="fas fa-tags"></i> Kategori</a>
+                <a href="#" data-page="popular"><i class="fas fa-fire"></i> Trending</a>
+                <a href="#" data-page="about"><i class="fas fa-info-circle"></i> Tentang</a>
+            </div>
+            
+            <div class="nav-user">
+                <div id="googleLogin"></div>
+                <div id="userInfo" style="display: none;"></div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        <!-- FILTER SECTION -->
+        <div class="filters">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="kuntilanak">👗 Kuntilanak</button>
+                <button class="filter-btn" data-filter="pocong">⚰️ Pocong</button>
+                <button class="filter-btn" data-filter="urban">🏙️ Urban Legend</button>
+                <button class="filter-btn" data-filter="experience">👤 Pengalaman Nyata</button>
+                <button class="filter-btn" data-filter="mystery">🔮 Misteri</button>
+            </div>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari cerita seram...">
+            </div>
+        </div>
+        
+        <!-- ALERT NOTIFICATION -->
+        <div id="alertMessage" class="alert"></div>
+        
+        <!-- POST FORM (HANYA UNTUK YANG SUDAH LOGIN) -->
+        <div class="post-form" id="postForm">
+            <h3><i class="fas fa-pen"></i> Bagikan Cerita Horormu</h3>
+            <form id="storyForm" onsubmit="event.preventDefault(); submitStory();">
+                <div class="form-group">
+                    <label><i class="fas fa-heading"></i> Judul Cerita</label>
+                    <input type="text" id="storyTitle" placeholder="Contoh: Malam Jumat di Rumah Tua" required>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-tag"></i> Kategori</label>
+                    <select id="storyCategory" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="kuntilanak">👗 Kuntilanak</option>
+                        <option value="pocong">⚰️ Pocong</option>
+                        <option value="urban">🏙️ Urban Legend</option>
+                        <option value="experience">👤 Pengalaman Nyata</option>
+                        <option value="mystery">🔮 Misteri</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-exclamation-triangle"></i> Trigger Warning (opsional)</label>
+                    <input type="text" id="triggerWarning" placeholder="Contoh: Kekerasan, Darah, dll">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-book-open"></i> Cerita</label>
+                    <textarea id="storyContent" placeholder="Tulis cerita horormu di sini... (minimal 100 karakter)" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-images"></i> Upload Foto (opsional, bisa banyak)</label>
+                    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Klik untuk upload foto</p>
+                        <small>Format: JPG, PNG, GIF | Max 5MB per file | Maksimal 5 foto</small>
+                    </div>
+                    <input type="file" id="fileInput" multiple accept="image/*" style="display: none;" onchange="previewFiles()">
+                    <div class="preview-grid" id="previewGrid"></div>
+                </div>
+                
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Publikasikan Cerita
+                </button>
+            </form>
+        </div>
+        
+        <!-- POSTS GRID -->
+        <div id="postsGrid" class="posts-grid">
+            <!-- Posts akan di-load via JavaScript -->
+        </div>
+        
+        <!-- PAGINATION -->
+        <div class="pagination" id="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+        </div>
+    </main>
+    
+    <!-- MODAL DETAIL CERITA -->
+    <div class="modal" id="storyModal" onclick="closeModalOnClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+                <h2 class="modal-title" id="modalTitle">Judul Cerita</h2>
+                <div class="modal-author">
+                    <img id="modalAuthorImg" src="https://ui-avatars.com/api/?name=User" alt="Author">
+                    <div class="modal-author-info">
+                        <h4 id="modalAuthorName">Username</h4>
+                        <p id="modalTime">2 jam yang lalu • <span id="modalRGN">HOROR-2026-0001</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body" id="modalContent">
+                <p>Isi cerita horor...</p>
+            </div>
+            
+            <div class="modal-images" id="modalImages"></div>
+            
+            <div class="modal-footer">
+                <div class="reactions">
+                    <button class="reaction-btn wow" onclick="reactToPost('wow')">
+                        <i class="fas fa-ghost"></i> <span id="modalWowCount">0</span> Wow
+                    </button>
+                    <button class="reaction-btn no" onclick="reactToPost('no')">
+                        <i class="fas fa-skull"></i> <span id="modalNoCount">0</span> No
+                    </button>
+                    <button class="reaction-btn report" onclick="reportPost()">
+                        <i class="fas fa-flag"></i> Laporkan
+                    </button>
+                </div>
+                <div class="modal-stats">
+                    <span><i class="fas fa-eye"></i> <span id="modalViews">0</span> dilihat</span>
+                </div>
+            </div>
+            
+            <div class="comments-section">
+                <h4><i class="fas fa-comments"></i> Komentar (<span id="commentCount">0</span>)</h4>
+                <div class="comment-form">
+                    <input type="text" id="commentInput" placeholder="Tulis komentar..." maxlength="500">
+                    <button onclick="addComment()"><i class="fas fa-paper-plane"></i> Kirim</button>
+                </div>
+                <div class="comments-list" id="commentsList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER PREMIUM -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>👻 HOROR FORUM</h3>
+            <p>Tempat berkumpulnya para pecinta cerita horor Nusantara</p>
+            
+            <div class="footer-links">
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+            
+            <div class="warning">
+                ⚠️ KONTEN 18+ - UNTUK DEWASA ⚠️
+            </div>
+            
+            <p style="margin-top: 30px; color: #666; font-size: 0.9rem;">
+                © 2026 HOROR FORUM - Komunitas Cerita Horor Indonesia<br>
+                Dibuat dengan 🩸 oleh FLIXIUS
+            </p>
+        </div>
+    </footer>
+    
+    <!-- GOOGLE LOGIN SCRIPT -->
+    <script>
+        // ===== KONFIGURASI GOOGLE LOGIN =====
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com', // GANTI!
+                callback: handleCredentialResponse
+            });
+            
+            google.accounts.id.renderButton(
+                document.getElementById('googleLogin'),
+                { 
+                    theme: 'filled_black', 
+                    size: 'large',
+                    shape: 'pill',
+                    text: 'signin_with',
+                    logo_alignment: 'left'
+                }
+            );
+            
+            // Cek local storage
+            loadUserFromStorage();
+            loadPosts();
+        };
+        
+        // ===== HANDLE LOGIN GOOGLE =====
+        async function handleCredentialResponse(response) {
+            try {
+                const res = await fetch('login.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({credential: response.credential})
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    localStorage.setItem('horor_user', JSON.stringify(currentUser));
+                    
+                    document.getElementById('googleLogin').style.display = 'none';
+                    document.getElementById('userInfo').style.display = 'flex';
+                    document.getElementById('userInfo').innerHTML = `
+                        <img src="${data.user.picture}" alt="Avatar">
+                        <span>${data.user.name}</span>
+                    `;
+                    
+                    document.getElementById('postForm').classList.add('show');
+                    showAlert('✅ Login berhasil! Selamat datang ' + data.user.name, 'success');
+                } else {
+                    showAlert('❌ Login gagal: ' + data.error, 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showAlert('❌ Gagal terhubung ke server', 'error');
+            }
+        }
+        
+        // ===== LOAD USER FROM STORAGE =====
+        function loadUserFromStorage() {
+            const saved = localStorage.getItem('horor_user');
+            if (saved) {
+                currentUser = JSON.parse(saved);
+                document.getElementById('googleLogin').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'flex';
+                document.getElementById('userInfo').innerHTML = `
+                    <img src="${currentUser.picture}" alt="Avatar">
+                    <span>${currentUser.name}</span>
+                `;
+                document.getElementById('postForm').classList.add('show');
+            }
+        }
+        
+        // ===== GLOBAL VARIABLES =====
+        let currentUser = null;
+        let currentPostId = null;
+        let currentPage = 1;
+        let currentFilter = 'all';
+        
+        // ===== SHOW ALERT =====
+        function showAlert(message, type = 'info') {
+            const alert = document.getElementById('alertMessage');
+                    // ===== KONFIGURASI GOOGLE LOGIN =====
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com', // GANTI DENGAN CLIENT ID ASLI!
+                callback: handleCredentialResponse
+            });
+            
+            google.accounts.id.renderButton(
+                document.getElementById('googleLogin'),
+                { 
+                    theme: 'filled_black', 
+                    size: 'large',
+                    shape: 'pill',
+                    text: 'signin_with',
+                    logo_alignment: 'left'
+                }
+            );
+            
+            // Cek local storage
+            loadUserFromStorage();
+            loadPosts();
+        };
+        
+        // ===== HANDLE LOGIN GOOGLE =====
+        async function handleCredentialResponse(response) {
+            try {
+                const res = await fetch('login.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({credential: response.credential})
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    localStorage.setItem('horor_user', JSON.stringify(currentUser));
+                    
+                    document.getElementById('googleLogin').style.display = 'none';
+                    document.getElementById('userInfo').style.display = 'flex';
+                    document.getElementById('userInfo').innerHTML = `
+                        <img src="${data.user.picture}" alt="Avatar">
+                        <span>${data.user.name}</span>
+                        <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                    `;
+                    
+                    document.getElementById('postForm').classList.add('show');
+                    showAlert('✅ Login berhasil! Selamat datang ' + data.user.name, 'success');
+                } else {
+                    showAlert('❌ Login gagal: ' + data.error, 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showAlert('❌ Gagal terhubung ke server', 'error');
+            }
+        }
+        
+        // ===== LOGOUT =====
+        function logout() {
+            localStorage.removeItem('horor_user');
+            currentUser = null;
+            document.getElementById('googleLogin').style.display = 'block';
+            document.getElementById('userInfo').style.display = 'none';
+            document.getElementById('postForm').classList.remove('show');
+            showAlert('👋 Berhasil logout', 'success');
+        }
+        
+        // ===== LOAD USER FROM STORAGE =====
+        function loadUserFromStorage() {
+            const saved = localStorage.getItem('horor_user');
+            if (saved) {
+                currentUser = JSON.parse(saved);
+                document.getElementById('googleLogin').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'flex';
+                document.getElementById('userInfo').innerHTML = `
+                    <img src="${currentUser.picture}" alt="Avatar">
+                    <span>${currentUser.name}</span>
+                    <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                `;
+                document.getElementById('postForm').classList.add('show');
+            }
+        }
+        
+        // ===== GLOBAL VARIABLES =====
+        let currentUser = null;
+        let currentPostId = null;
+        let currentPage = 1;
+        let currentFilter = 'all';
+        let posts = [];
+        
+        // ===== SHOW ALERT =====
+        function showAlert(message, type = 'info') {
+            const alert = document.getElementById('alertMessage');
+            alert.className = 'alert ' + type;
+            alert.textContent = message;
+            alert.style.display = 'block';
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+        
+        // ===== PREVIEW FILES =====
+        function previewFiles() {
+            const files = document.getElementById('fileInput').files;
+            const previewGrid = document.getElementById('previewGrid');
+            previewGrid.innerHTML = '';
+            
+            if (files.length > 5) {
+                showAlert('Maksimal 5 foto!', 'warning');
+                document.getElementById('fileInput').value = '';
+                return;
+            }
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                if (file.size > 5 * 1024 * 1024) {
+                    showAlert('File ' + file.name + ' terlalu besar! Max 5MB', 'error');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewGrid.innerHTML += `
+                        <div class="preview-item">
+                            <img src="${e.target.result}" alt="Preview">
+                            <button class="remove-btn" onclick="this.parentElement.remove()">✕</button>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // ===== SUBMIT STORY =====
+        async function submitStory() {
+            if (!currentUser) {
+                showAlert('Silakan login dulu!', 'warning');
+                return;
+            }
+            
+            const title = document.getElementById('storyTitle').value.trim();
+            const category = document.getElementById('storyCategory').value;
+            const content = document.getElementById('storyContent').value.trim();
+            
+            if (!title || !category || !content) {
+                showAlert('Judul, kategori, dan cerita harus diisi!', 'error');
+                return;
+            }
+            
+            if (content.length < 100) {
+                showAlert('Cerita minimal 100 karakter!', 'warning');
+                return;
+            }
+            
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+            
+            try {
+                const res = await fetch('api/simpan-cerita.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        title: title,
+                        category: category,
+                        content: content,
+                        trigger: document.getElementById('triggerWarning').value
+                    })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    showAlert('✅ Cerita berhasil dipublikasikan!', 'success');
+                    document.getElementById('storyTitle').value = '';
+                    document.getElementById('storyCategory').value = '';
+                    document.getElementById('storyContent').value = '';
+                    document.getElementById('triggerWarning').value = '';
+                    document.getElementById('previewGrid').innerHTML = '';
+                    document.getElementById('fileInput').value = '';
+                    
+                    loadPosts();
+                } else {
+                    showAlert('❌ Gagal: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ Gagal menyimpan cerita', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publikasikan Cerita';
+            }
+        }
+        
+        // ===== LOAD POSTS =====
+        async function loadPosts() {
+            const grid = document.getElementById('postsGrid');
+            grid.innerHTML = '<div class="loading">Memuat cerita horor...</div>';
+            
+            try {
+                const res = await fetch('api/ambil-cerita.php?page=' + currentPage + '&filter=' + currentFilter);
+                const data = await res.json();
+                
+                if (data.posts && data.posts.length > 0) {
+                    posts = data.posts;
+                    displayPosts(data.posts);
+                    updatePagination(data.totalPages);
+                } else {
+                    grid.innerHTML = '<div style="text-align: center; padding: 60px; color: #666;"><i class="fas fa-book-open" style="font-size: 48px; margin-bottom: 20px;"></i><p>Belum ada cerita horor. Jadilah yang pertama!</p></div>';
+                }
+            } catch (error) {
+                grid.innerHTML = '<div style="text-align: center; padding: 60px; color: #c62828;"><i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px;"></i><p>Gagal memuat cerita</p></div>';
+            }
+        }
+        
+        // ===== DISPLAY POSTS =====
+        function displayPosts(posts) {
+            const grid = document.getElementById('postsGrid');
+            grid.innerHTML = '';
+            
+            posts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.onclick = () => openStory(post.id);
+                
+                const coverImage = post.cover_image || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%238b0000\' font-size=\'30\' dy=\'.3em\'%3E👻%3C/text%3E%3C/svg%3E';
+                
+                card.innerHTML = `
+                    <div class="post-cover" style="background-image: url('${coverImage}')">
+                        <span class="post-category">${post.category}</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-author">
+                            <div class="author-avatar">${post.author_name ? post.author_name.charAt(0) : '?'}</div>
+                            <div class="author-info">
+                                <h4>${post.author_name || 'Anonymous'}</h4>
+                                <p>${post.author_rgn || 'HOROR-XXXX'} • ${timeAgo(post.created_at)}</p>
+                            </div>
+                        </div>
+                        <h3 class="post-title">${post.title}</h3>
+                        <p class="post-excerpt">${post.content.substring(0, 150)}${post.content.length > 150 ? '...' : ''}</p>
+                        <div class="post-meta">
+                            <div class="post-stats">
+                                <div class="stat wow"><i class="fas fa-ghost"></i> ${post.wow_count || 0}</div>
+                                <div class="stat no"><i class="fas fa-skull"></i> ${post.no_count || 0}</div>
+                                <div class="stat"><i class="fas fa-comment"></i> ${post.comment_count || 0}</div>
+                            </div>
+                            <span class="read-more">Baca <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // ===== TIME AGO FUNCTION =====
+        function timeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const seconds = Math.floor((now - date) / 1000);
+            
+            if (seconds < 60) return seconds + ' detik lalu';
+            if (seconds < 3600) return Math.floor(seconds / 60) + ' menit lalu';
+            if (seconds < 86400) return Math.floor(seconds / 3600) + ' jam lalu';
+            return Math.floor(seconds / 86400) + ' hari lalu';
+        }
+        
+        // ===== UPDATE PAGINATION =====
+        function updatePagination(totalPages) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            for (let i = 1; i <= totalPages && i <= 5; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'page-btn' + (i === currentPage ? ' active' : '');
+                btn.textContent = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    loadPosts();
+                };
+                pagination.appendChild(btn);
+            }
+        }
+        
+        // ===== OPEN STORY MODAL =====
+        async function openStory(id) {
+            currentPostId = id;
+            
+            try {
+                const res = await fetch('api/ambil-cerita.php?id=' + id);
+                const data = await res.json();
+                
+                if (data.post) {
+                    const post = data.post;
+                    
+                    document.getElementById('modalTitle').textContent = post.title;
+                    document.getElementById('modalAuthorName').textContent = post.author_name || 'Anonymous';
+                    document.getElementById('modalTime').innerHTML = timeAgo(post.created_at) + ' • <span id="modalRGN">' + (post.author_rgn || 'HOROR-XXXX') + '</span>';
+                    document.getElementById('modalAuthorImg').src = post.author_avatar || 'https://ui-avatars.com/api/?name=' + (post.author_name || 'User');
+                    document.getElementById('modalContent').innerHTML = '<p>' + post.content.replace(/\n/g, '</p><p>') + '</p>';
+                    document.getElementById('modalWowCount').textContent = post.wow_count || 0;
+                    document.getElementById('modalNoCount').textContent = post.no_count || 0;
+                    document.getElementById('modalViews').textContent = post.views || 0;
+                    document.getElementById('commentCount').textContent = post.comment_count || 0;
+                    
+                    // Load images
+                    const imagesGrid = document.getElementById('modalImages');
+                    if (post.images && post.images.length > 0) {
+                        imagesGrid.innerHTML = '';
+                        post.images.forEach(img => {
+                            imagesGrid.innerHTML += `<img src="${img}" onclick="window.open(this.src)">`;
+                        });
+                    } else {
+                        imagesGrid.innerHTML = '';
+                    }
+                    
+                    // Load comments
+                    loadComments(id);
+                    
+                    document.getElementById('storyModal').style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            } catch (error) {
+                showAlert('❌ Gagal memuat cerita', 'error');
+            }
+        }
+        
+        // ===== CLOSE MODAL =====
+        function closeModal() {
+            document.getElementById('storyModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function closeModalOnClick(event) {
+            if (event.target === document.getElementById('storyModal')) {
+                closeModal();
+            }
+        }
+        
+        // ===== REACT TO POST =====
+        async function reactToPost(type) {
+            if (!currentUser) {
+                showAlert('Login dulu untuk memberi reaksi!', 'warning');
+                return;
+            }
+            
+            try {
+                const res = await fetch('api/reaksi.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        post_id: currentPostId,
+                        type: type
+                    })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    if (type === 'wow') {
+                        const wowSpan = document.getElementById('modalWowCount');
+                        wowSpan.textContent = parseInt(wowSpan.textContent) + (data.added ? 1 : -1);
+                    } else {
+                        const noSpan = document.getElementById('modalNoCount');
+                        noSpan.textContent = parseInt(noSpan.textContent) + (data.added ? 1 : -1);
+                    }
+                    showAlert(type === 'wow' ? '👻 Reaksi Wow diberikan!' : '💀 Reaksi No diberikan!', 'success');
+                }
+            } catch (error) {
+                showAlert('❌ Gagal memberi reaksi', 'error');
+            }
+        }
+        
+        // ===== REPORT POST =====
+        async function reportPost() {
+            if (!currentUser) {
+                showAlert('Login dulu untuk melapor!', 'warning');
+                return;
+            }
+            
+            const reason = prompt('Alasan melapor:');
+            if (!reason) return;
+            
+            try {
+                const res = await fetch('api/lapor.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        post_id: currentPostId,
+                        reason: reason
+                    })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    showAlert('🚩 Laporan terkirim ke moderator', 'success');
+                } else {
+                    showAlert('❌ Gagal mengirim laporan', 'error');
+                }
+            } catch (error) {
+                showAlert('❌ Gagal mengirim laporan', 'error');
+            }
+        }
+        
+        // ===== LOAD COMMENTS =====
+        async function loadComments(postId) {
+            try {
+                const res = await fetch('api/komentar.php?post_id=' + postId);
+                const data = await res.json();
+                
+                const commentsList = document.getElementById('commentsList');
+                if (data.comments && data.comments.length > 0) {
+                    commentsList.innerHTML = '';
+                    data.comments.forEach(comment => {
+                        commentsList.innerHTML += `
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <span class="comment-author">${comment.author_name}</span>
+                                    <span class="comment-time">${timeAgo(comment.created_at)}</span>
+                                </div>
+                                <div class="comment-text">${comment.content}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    commentsList.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">Belum ada komentar. Jadilah yang pertama!</p>';
+                }
+            } catch (error) {
+                console.error('Error loading comments:', error);
+            }
+        }
+        
+        // ===== ADD COMMENT =====
+        async function addComment() {
+            if (!currentUser) {
+                showAlert('Login dulu untuk berkomentar!', 'warning');
+                return;
+            }
+            
+            const input = document.getElementById('commentInput');
+            const content = input.value.trim();
+            
+            if
